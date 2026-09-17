@@ -5,9 +5,9 @@
   All brand tokens are defined here — import this file, never hardcode hex values in components.
 */
 @theme {
-  --color-forest: #1b3b2f;
-  --color-forest-dark: #122a21;
-  --color-forest-light: #2a5444;
+  --color-forest: #009e4d;
+  --color-forest-dark: #007d3d;
+  --color-forest-light: #10b981;
   --color-cream: #f7f5ef;
   --color-cream-dark: #ede9de;
   --color-amber: #c99a3c;
