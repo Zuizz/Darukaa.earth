@@ -18,8 +18,9 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "https://darukaa-earth.vercel.app",
         "https://darukaa-earth-kohl.vercel.app",
+    "https://darukaa-earth-git-main-zuizz.vercel.app",
+    "https://darukaa-earth-1vsmrrni5-zuizz.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
