@@ -9,7 +9,7 @@ from app.models.metric import SiteMetric
 BASE_URL = "http://127.0.0.1:8000"
 
 
-def run_metrics_verification():
+def test_metrics():
     print(f"Connecting to FastAPI backend at {BASE_URL}...")
     client = httpx.Client(base_url=BASE_URL, timeout=30.0)
 
@@ -80,7 +80,7 @@ def run_metrics_verification():
     )
     user_token = client.post(
         "/auth/login",
-        data={"username": reg_user.json()["email"], "password": "SecurePassword123!"},
+        json={"email": reg_user.json()["email"], "password": "SecurePassword123!"},
     ).json()["access_token"]
     headers = {"Authorization": f"Bearer {user_token}"}
 
@@ -143,7 +143,7 @@ def run_metrics_verification():
 
 if __name__ == "__main__":
     try:
-        run_metrics_verification()
+        test_metrics()
     except Exception as e:
         print(f"[ERROR] Test failed: {e}")
         sys.exit(1)

@@ -4,7 +4,8 @@ import uuid
 
 BASE_URL = "http://127.0.0.1:8000"
 
-def run_tests():
+
+def test_crud():
     print(f"Connecting to FastAPI backend at {BASE_URL}...")
     client = httpx.Client(base_url=BASE_URL, timeout=30.0)
 
@@ -168,9 +169,10 @@ def run_tests():
     print("ALL 17 CRUD & AUTH VERIFICATION TESTS PASSED!")
     print("==========================================")
 
+
 if __name__ == "__main__":
     try:
-        run_tests()
+        test_crud()
     except Exception as e:
         print(f"[ERROR] Test execution failed: {e}")
         sys.exit(1)
