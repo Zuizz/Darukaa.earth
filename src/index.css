@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/*
+  Tailwind v4 uses CSS-based theme configuration instead of tailwind.config.js.
+  All brand tokens are defined here — import this file, never hardcode hex values in components.
+*/
+@theme {
+  --color-forest:       #1B3B2F;
+  --color-forest-dark:  #122A21;
+  --color-forest-light: #2A5444;
+  --color-cream:        #F7F5EF;
+  --color-cream-dark:   #EDE9DE;
+  --color-amber:        #C99A3C;
+  --color-amber-light:  #DFB45A;
+  --color-amber-dark:   #A67C28;
+
+  /* Biodiversity site color — distinct from the green family */
+  --color-teal:         #1A7A6E;
+  --color-teal-dark:    #145F55;
+
+  /* Neutrals layered over cream */
+  --color-ink:          #1C1C1A;
+  --color-ink-muted:    #5C5C58;
+  --color-border:       #D8D4C8;
+
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
+}

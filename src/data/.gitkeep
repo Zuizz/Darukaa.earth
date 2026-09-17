@@ -1,0 +1,2 @@
+// Mock data for projects, sites, carbon metrics, biodiversity indicators.
+// Will be replaced with real API calls; kept here so import paths are stable.
