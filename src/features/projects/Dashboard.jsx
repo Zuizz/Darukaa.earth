@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import { Plus, Loader2, AlertTriangle } from 'lucide-react'
-import PageHeader from '../../components/PageHeader'
-import Button from '../../components/Button'
-import Modal from '../../components/Modal'
-import ProjectCard from './ProjectCard'
-import NewProjectModal from './NewProjectModal'
-import CanopySVG from './CanopySVG'
-import { useProjects } from './useProjects'
+import { useState } from "react";
+import { Plus, Loader2, AlertTriangle } from "lucide-react";
+import PageHeader from "../../components/PageHeader";
+import Button from "../../components/Button";
+import Modal from "../../components/Modal";
+import ProjectCard from "./ProjectCard";
+import NewProjectModal from "./NewProjectModal";
+import CanopySVG from "./CanopySVG";
+import { useProjects } from "./useProjects";
 
 const FILTER_OPTIONS = [
-  { value: 'all',          label: 'All' },
-  { value: 'carbon',       label: 'Carbon' },
-  { value: 'biodiversity', label: 'Biodiversity' },
-]
+  { value: "all", label: "All" },
+  { value: "carbon", label: "Carbon" },
+  { value: "biodiversity", label: "Biodiversity" },
+];
 
 function FilterTabs({ active, onChange }) {
   return (
@@ -23,38 +23,37 @@ function FilterTabs({ active, onChange }) {
           onClick={() => onChange(value)}
           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
             active === value
-              ? 'bg-white text-ink shadow-sm'
-              : 'text-ink-muted hover:text-ink'
+              ? "bg-white text-ink shadow-sm"
+              : "text-ink-muted hover:text-ink"
           }`}
         >
           {label}
         </button>
       ))}
     </div>
-  )
+  );
 }
 
 export default function Dashboard() {
-  const { projects, loading, addProject, deleteProject } = useProjects()
-  const [filter, setFilter] = useState('all')
-  const [modalOpen, setModalOpen] = useState(false)
-  const [deletingProject, setDeletingProject] = useState(null)
-  const [isDeleting, setIsDeleting] = useState(false)
+  const { projects, loading, addProject, deleteProject } = useProjects();
+  const [filter, setFilter] = useState("all");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [deletingProject, setDeletingProject] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const visible = filter === 'all'
-    ? projects
-    : projects.filter((p) => p.type === filter)
+  const visible =
+    filter === "all" ? projects : projects.filter((p) => p.type === filter);
 
   async function handleConfirmDelete() {
-    if (!deletingProject) return
-    setIsDeleting(true)
+    if (!deletingProject) return;
+    setIsDeleting(true);
     try {
-      await deleteProject(deletingProject.id)
-      setDeletingProject(null)
+      await deleteProject(deletingProject.id);
+      setDeletingProject(null);
     } catch {
       /* ignore / handled by apiFetch error */
     } finally {
-      setIsDeleting(false)
+      setIsDeleting(false);
     }
   }
 
@@ -62,7 +61,7 @@ export default function Dashboard() {
     <div className="flex flex-col h-full overflow-y-auto">
       <PageHeader
         title="Projects"
-        subtitle={`${projects.length} project${projects.length !== 1 ? 's' : ''} across carbon and biodiversity programmes.`}
+        subtitle={`${projects.length} project${projects.length !== 1 ? "s" : ""} across carbon and biodiversity programmes.`}
         actions={
           <Button
             variant="primary"
@@ -102,7 +101,7 @@ export default function Dashboard() {
           </div>
         ) : (
           <EmptyState
-            isFiltered={filter !== 'all'}
+            isFiltered={filter !== "all"}
             onAdd={() => setModalOpen(true)}
           />
         )}
@@ -130,7 +129,9 @@ export default function Dashboard() {
                 Delete "{deletingProject?.name}"?
               </p>
               <p className="text-xs text-ink-muted leading-relaxed">
-                Its {deletingProject?.siteCount ?? 0} {deletingProject?.siteCount === 1 ? 'site' : 'sites'} will also be permanently removed. This action cannot be undone.
+                Its {deletingProject?.siteCount ?? 0}{" "}
+                {deletingProject?.siteCount === 1 ? "site" : "sites"} will also
+                be permanently removed. This action cannot be undone.
               </p>
             </div>
           </div>
@@ -153,13 +154,13 @@ export default function Dashboard() {
               onClick={handleConfirmDelete}
               className="!bg-red-600 hover:!bg-red-700 !text-white"
             >
-              {isDeleting ? 'Deleting...' : 'Delete project'}
+              {isDeleting ? "Deleting..." : "Delete project"}
             </Button>
           </div>
         </div>
       </Modal>
     </div>
-  )
+  );
 }
 
 function EmptyState({ isFiltered, onAdd }) {
@@ -168,12 +169,12 @@ function EmptyState({ isFiltered, onAdd }) {
       <CanopySVG className="w-32 h-auto text-forest" />
       <div className="flex flex-col gap-1">
         <p className="text-sm font-medium text-ink">
-          {isFiltered ? 'No projects match this filter.' : 'No projects yet.'}
+          {isFiltered ? "No projects match this filter." : "No projects yet."}
         </p>
         <p className="text-xs text-ink-muted max-w-xs">
           {isFiltered
             ? 'Try switching to "All" or add a new project.'
-            : 'Add your first carbon or biodiversity project to get started.'}
+            : "Add your first carbon or biodiversity project to get started."}
         </p>
       </div>
       {!isFiltered && (
@@ -183,5 +184,5 @@ function EmptyState({ isFiltered, onAdd }) {
         </Button>
       )}
     </div>
-  )
+  );
 }

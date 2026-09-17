@@ -1,25 +1,25 @@
-import { useState } from 'react'
-import Modal from '../../components/Modal'
-import Button from '../../components/Button'
+import { useState } from "react";
+import Modal from "../../components/Modal";
+import Button from "../../components/Button";
 
 const fieldClass =
-  'w-full rounded-md border border-border bg-cream px-3 py-2 text-sm text-ink ' +
-  'placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest'
+  "w-full rounded-md border border-border bg-cream px-3 py-2 text-sm text-ink " +
+  "placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest";
 
 export default function NewProjectModal({ open, onClose, onSubmit }) {
-  const [name, setName] = useState('')
-  const [type, setType] = useState('carbon')
-  const [description, setDescription] = useState('')
+  const [name, setName] = useState("");
+  const [type, setType] = useState("carbon");
+  const [description, setDescription] = useState("");
 
   function handleSubmit(e) {
-    e.preventDefault()
-    if (!name.trim()) return
-    onSubmit({ name: name.trim(), type, description: description.trim() })
+    e.preventDefault();
+    if (!name.trim()) return;
+    onSubmit({ name: name.trim(), type, description: description.trim() });
     // Reset form
-    setName('')
-    setType('carbon')
-    setDescription('')
-    onClose()
+    setName("");
+    setType("carbon");
+    setDescription("");
+    onClose();
   }
 
   return (
@@ -56,7 +56,8 @@ export default function NewProjectModal({ open, onClose, onSubmit }) {
 
         <div className="flex flex-col gap-1.5">
           <label className="text-xs font-medium text-ink-muted uppercase tracking-wide">
-            Description <span className="normal-case font-normal">(optional)</span>
+            Description{" "}
+            <span className="normal-case font-normal">(optional)</span>
           </label>
           <textarea
             rows={3}
@@ -71,11 +72,16 @@ export default function NewProjectModal({ open, onClose, onSubmit }) {
           <Button type="button" variant="ghost" size="sm" onClick={onClose}>
             Cancel
           </Button>
-          <Button type="submit" variant="primary" size="sm" disabled={!name.trim()}>
+          <Button
+            type="submit"
+            variant="primary"
+            size="sm"
+            disabled={!name.trim()}
+          >
             Create project
           </Button>
         </div>
       </form>
     </Modal>
-  )
+  );
 }

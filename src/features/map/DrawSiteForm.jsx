@@ -1,43 +1,49 @@
-import { useState, useEffect } from 'react'
-import Modal from '../../components/Modal'
-import Button from '../../components/Button'
+import { useState, useEffect } from "react";
+import Modal from "../../components/Modal";
+import Button from "../../components/Button";
 
 const fieldClass =
-  'w-full rounded-md border border-border bg-cream px-3 py-2 text-sm text-ink ' +
-  'placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest'
+  "w-full rounded-md border border-border bg-cream px-3 py-2 text-sm text-ink " +
+  "placeholder:text-ink-muted/50 focus:outline-none focus:ring-2 focus:ring-forest/30 focus:border-forest";
 
-export default function DrawSiteForm({ open, projects = [], onClose, onSubmit }) {
-  const [name, setName]           = useState('')
-  const [projectId, setProjectId] = useState('')
+export default function DrawSiteForm({
+  open,
+  projects = [],
+  onClose,
+  onSubmit,
+}) {
+  const [name, setName] = useState("");
+  const [projectId, setProjectId] = useState("");
 
   useEffect(() => {
     if (projects.length > 0 && !projectId) {
-      setProjectId(projects[0].id)
+      setProjectId(projects[0].id);
     }
-  }, [projects, projectId])
+  }, [projects, projectId]);
 
   function handleSubmit(e) {
-    e.preventDefault()
-    const selectedProj = projectId || projects[0]?.id
-    if (!name.trim() || !selectedProj) return
-    onSubmit({ name: name.trim(), projectId: selectedProj })
-    reset()
+    e.preventDefault();
+    const selectedProj = projectId || projects[0]?.id;
+    if (!name.trim() || !selectedProj) return;
+    onSubmit({ name: name.trim(), projectId: selectedProj });
+    reset();
   }
 
   function handleClose() {
-    reset()
-    onClose()
+    reset();
+    onClose();
   }
 
   function reset() {
-    setName('')
-    setProjectId(projects[0]?.id ?? '')
+    setName("");
+    setProjectId(projects[0]?.id ?? "");
   }
 
   return (
     <Modal open={open} onClose={handleClose} title="Name this site">
       <p className="text-xs text-ink-muted mb-4">
-        Polygon drawn. Give the site a name and assign it to a project — it'll appear on the map immediately.
+        Polygon drawn. Give the site a name and assign it to a project — it'll
+        appear on the map immediately.
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -66,7 +72,9 @@ export default function DrawSiteForm({ open, projects = [], onClose, onSubmit })
             className={fieldClass}
           >
             {projects.map((p) => (
-              <option key={p.id} value={p.id}>{p.name}</option>
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
             ))}
           </select>
         </div>
@@ -75,11 +83,16 @@ export default function DrawSiteForm({ open, projects = [], onClose, onSubmit })
           <Button type="button" variant="ghost" size="sm" onClick={handleClose}>
             Discard
           </Button>
-          <Button type="submit" variant="primary" size="sm" disabled={!name.trim()}>
+          <Button
+            type="submit"
+            variant="primary"
+            size="sm"
+            disabled={!name.trim()}
+          >
             Save site
           </Button>
         </div>
       </form>
     </Modal>
-  )
+  );
 }

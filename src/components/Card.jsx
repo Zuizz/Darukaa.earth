@@ -6,13 +6,18 @@
  *   children  (node)
  *   padding   (bool, default true) — set false when the card content manages its own padding
  */
-export default function Card({ className = '', padding = true, children, ...props }) {
+export default function Card({
+  className = "",
+  padding = true,
+  children,
+  ...props
+}) {
   return (
     <div
-      className={`bg-white rounded-lg border border-border ${padding ? 'p-5' : ''} ${className}`}
+      className={`bg-white rounded-lg border border-border ${padding ? "p-5" : ""} ${className}`}
       {...props}
     >
       {children}
     </div>
-  )
+  );
 }

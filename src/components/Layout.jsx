@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom'
-import Sidebar from './Sidebar'
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 /**
  * Wraps every page with the persistent sidebar on the left and the main
@@ -13,5 +13,5 @@ export default function Layout() {
         <Outlet />
       </main>
     </div>
-  )
+  );
 }

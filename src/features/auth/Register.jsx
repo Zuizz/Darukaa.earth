@@ -1,42 +1,42 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Trees, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react'
-import { useAuth } from './useAuth'
-import Button from '../../components/Button'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Trees, Lock, Mail, ArrowRight, AlertCircle } from "lucide-react";
+import { useAuth } from "./useAuth";
+import Button from "../../components/Button";
 
 export default function Register() {
-  const navigate = useNavigate()
-  const { register } = useAuth()
+  const navigate = useNavigate();
+  const { register } = useAuth();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [error, setError] = useState('')
-  const [submitting, setSubmitting] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError("");
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match')
-      return
+      setError("Passwords do not match");
+      return;
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters long')
-      return
+      setError("Password must be at least 6 characters long");
+      return;
     }
 
-    setSubmitting(true)
+    setSubmitting(true);
 
     try {
-      await register({ email, password })
-      navigate('/')
+      await register({ email, password });
+      navigate("/");
     } catch (err) {
-      setError(err.message || 'Registration failed. Please try again.')
+      setError(err.message || "Registration failed. Please try again.");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
   }
 
@@ -129,7 +129,7 @@ export default function Register() {
                 disabled={submitting}
                 className="w-full justify-center"
               >
-                {submitting ? 'Creating account...' : 'Create Account'}
+                {submitting ? "Creating account..." : "Create Account"}
                 {!submitting && <ArrowRight size={15} />}
               </Button>
             </div>
@@ -137,8 +137,11 @@ export default function Register() {
 
           <div className="mt-6 pt-5 border-t border-border text-center">
             <p className="text-xs text-ink-muted">
-              Already registered?{' '}
-              <Link to="/login" className="font-semibold text-forest hover:underline">
+              Already registered?{" "}
+              <Link
+                to="/login"
+                className="font-semibold text-forest hover:underline"
+              >
                 Sign in here
               </Link>
             </p>
@@ -146,5 +149,5 @@ export default function Register() {
         </div>
       </div>
     </div>
-  )
+  );
 }

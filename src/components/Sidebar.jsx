@@ -1,14 +1,14 @@
-import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Map, BarChart2, LogOut, User } from 'lucide-react'
-import { useAuth } from '../features/auth/useAuth'
+import { NavLink } from "react-router-dom";
+import { LayoutDashboard, Map, BarChart2, LogOut, User } from "lucide-react";
+import { useAuth } from "../features/auth/useAuth";
 
 const navItems = [
-  { to: '/',    label: 'Dashboard', icon: LayoutDashboard },
-  { to: '/map', label: 'Map',       icon: Map },
-]
+  { to: "/", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/map", label: "Map", icon: Map },
+];
 
 export default function Sidebar() {
-  const { user, logout } = useAuth()
+  const { user, logout } = useAuth();
 
   return (
     <aside className="flex flex-col w-56 shrink-0 bg-forest h-full">
@@ -24,12 +24,12 @@ export default function Sidebar() {
           <NavLink
             key={to}
             to={to}
-            end={to === '/'}
+            end={to === "/"}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive
-                  ? 'bg-forest-light text-cream'
-                  : 'text-cream/60 hover:bg-forest-light/50 hover:text-cream'
+                  ? "bg-forest-light text-cream"
+                  : "text-cream/60 hover:bg-forest-light/50 hover:text-cream"
               }`
             }
           >
@@ -46,7 +46,9 @@ export default function Sidebar() {
         >
           <BarChart2 size={16} strokeWidth={1.75} />
           Reports
-          <span className="ml-auto text-xs text-cream/25 font-normal">soon</span>
+          <span className="ml-auto text-xs text-cream/25 font-normal">
+            soon
+          </span>
         </button>
       </nav>
 
@@ -67,6 +69,5 @@ export default function Sidebar() {
         <p className="text-cream/30 text-[10px] px-2">v0.1.0-alpha</p>
       </div>
     </aside>
-  )
+  );
 }
-

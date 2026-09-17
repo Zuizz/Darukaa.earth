@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
   Filler,
-} from 'chart.js'
+} from "chart.js";
 
 // Register all required Chart.js components once
 ChartJS.register(
@@ -23,30 +23,30 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
-  Filler
-)
+  Filler,
+);
 
 export const CHART_THEME = {
-  forest: '#1B3B2F',
-  forestLight: '#2A5444',
-  forestFill: 'rgba(42, 84, 68, 0.12)',
-  amber: '#C99A3C',
-  amberDark: '#A67C28',
-  amberFill: 'rgba(201, 154, 60, 0.18)',
-  teal: '#1A7A6E',
-  tealDark: '#145F55',
-  tealFill: 'rgba(26, 122, 110, 0.15)',
-  ink: '#1C1C1A',
-  inkMuted: '#5C5C58',
-  border: '#D8D4C8',
-  creamDark: '#EDE9DE',
-  gaugeBackground: '#E8E4D8',
-}
+  forest: "#1B3B2F",
+  forestLight: "#2A5444",
+  forestFill: "rgba(42, 84, 68, 0.12)",
+  amber: "#C99A3C",
+  amberDark: "#A67C28",
+  amberFill: "rgba(201, 154, 60, 0.18)",
+  teal: "#1A7A6E",
+  tealDark: "#145F55",
+  tealFill: "rgba(26, 122, 110, 0.15)",
+  ink: "#1C1C1A",
+  inkMuted: "#5C5C58",
+  border: "#D8D4C8",
+  creamDark: "#EDE9DE",
+  gaugeBackground: "#E8E4D8",
+};
 
 export const baseTooltipOptions = {
   backgroundColor: CHART_THEME.forest,
-  titleColor: '#F7F5EF',
-  bodyColor: '#F7F5EF',
+  titleColor: "#F7F5EF",
+  bodyColor: "#F7F5EF",
   borderColor: CHART_THEME.amber,
   borderWidth: 1,
   padding: 10,
@@ -55,14 +55,14 @@ export const baseTooltipOptions = {
   titleFont: {
     family: "'Inter', sans-serif",
     size: 11,
-    weight: '600',
+    weight: "600",
   },
   bodyFont: {
     family: "'Inter', sans-serif",
     size: 12,
-    weight: '500',
+    weight: "500",
   },
-}
+};
 
 export const baseScalesOptions = {
   x: {
@@ -82,7 +82,7 @@ export const baseScalesOptions = {
   },
   y: {
     grid: {
-      color: 'rgba(216, 212, 200, 0.45)',
+      color: "rgba(216, 212, 200, 0.45)",
       tickBorderDash: [3, 3],
     },
     ticks: {
@@ -96,4 +96,4 @@ export const baseScalesOptions = {
       display: false,
     },
   },
-}
+};

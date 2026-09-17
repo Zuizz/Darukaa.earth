@@ -1,30 +1,30 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Trees, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react'
-import { useAuth } from './useAuth'
-import Button from '../../components/Button'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Trees, Lock, Mail, ArrowRight, AlertCircle } from "lucide-react";
+import { useAuth } from "./useAuth";
+import Button from "../../components/Button";
 
 export default function Login() {
-  const navigate = useNavigate()
-  const { login } = useAuth()
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [submitting, setSubmitting] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault()
-    setError('')
-    setSubmitting(true)
+    e.preventDefault();
+    setError("");
+    setSubmitting(true);
 
     try {
-      await login({ email, password })
-      navigate('/')
+      await login({ email, password });
+      navigate("/");
     } catch (err) {
-      setError(err.message || 'Login failed. Please check your credentials.')
+      setError(err.message || "Login failed. Please check your credentials.");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
   }
 
@@ -98,7 +98,7 @@ export default function Login() {
                 disabled={submitting}
                 className="w-full justify-center"
               >
-                {submitting ? 'Signing in...' : 'Sign in'}
+                {submitting ? "Signing in..." : "Sign in"}
                 {!submitting && <ArrowRight size={15} />}
               </Button>
             </div>
@@ -106,8 +106,11 @@ export default function Login() {
 
           <div className="mt-6 pt-5 border-t border-border text-center">
             <p className="text-xs text-ink-muted">
-              Don't have an account?{' '}
-              <Link to="/register" className="font-semibold text-forest hover:underline">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="font-semibold text-forest hover:underline"
+              >
                 Create an account
               </Link>
             </p>
@@ -115,5 +118,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }

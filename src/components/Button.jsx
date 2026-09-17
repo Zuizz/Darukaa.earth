@@ -7,22 +7,23 @@
  * Sizes: sm | md (default) | lg
  */
 const variantClasses = {
-  primary:   'bg-amber text-white hover:bg-amber-dark active:bg-amber-dark',
-  secondary: 'border border-forest text-forest hover:bg-forest hover:text-cream',
-  ghost:     'text-ink-muted hover:text-ink hover:bg-cream-dark',
-}
+  primary: "bg-amber text-white hover:bg-amber-dark active:bg-amber-dark",
+  secondary:
+    "border border-forest text-forest hover:bg-forest hover:text-cream",
+  ghost: "text-ink-muted hover:text-ink hover:bg-cream-dark",
+};
 
 const sizeClasses = {
-  sm: 'px-3 py-1.5 text-xs',
-  md: 'px-4 py-2 text-sm',
-  lg: 'px-5 py-2.5 text-base',
-}
+  sm: "px-3 py-1.5 text-xs",
+  md: "px-4 py-2 text-sm",
+  lg: "px-5 py-2.5 text-base",
+};
 
 export default function Button({
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   disabled = false,
-  className = '',
+  className = "",
   children,
   ...rest
 }) {
@@ -42,5 +43,5 @@ export default function Button({
     >
       {children}
     </button>
-  )
+  );
 }
