@@ -56,21 +56,30 @@ jobs:
           DATABASE_URL_DIRECT: ${{ secrets.DATABASE_URL_DIRECT }}
           JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
         run: |
-          nohup uvicorn app.main:app --host 127.0.0.1 --port 8000 > server.log 2>&1 &
+          nohup uvicorn app.main:app --host 0.0.0.0 --port 8000 > server.log 2>&1 &
           python -c "
           import time, urllib.request
-          for _ in range(30):
-              try:
-                  if urllib.request.urlopen('http://127.0.0.1:8000/health').getcode() == 200:
-                      print('Backend server is healthy!')
-                      break
-              except Exception:
-                  time.sleep(1)
-          else:
-              print('Backend failed to start in 30s. Logs:')
+          start_time = time.time()
+          for attempt in range(1, 61):
+              for url in ['http://127.0.0.1:8000/health', 'http://localhost:8000/health']:
+                  try:
+                      res = urllib.request.urlopen(url, timeout=3)
+                      if res.getcode() == 200:
+                          print(f'Backend server healthy at {url} after {time.time() - start_time:.1f}s!')
+                          exit(0)
+                  except Exception:
+                      pass
+              if attempt % 5 == 0:
+                  print(f'Waiting for backend startup (attempt {attempt}/60)...')
+              time.sleep(1)
+
+          print('Backend failed to start within 60s. Server log output:')
+          try:
               with open('server.log') as f:
                   print(f.read())
-              exit(1)
+          except Exception as e:
+              print(f'Could not read server.log: {e}')
+          exit(1)
           "
 
       - name: Run backend tests
