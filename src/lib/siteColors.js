@@ -3,8 +3,8 @@
 // Reused in ProjectFilterPanel's type indicator dots via inline style.
 export const SITE_COLORS = {
   carbon: {
-    fill: "#10B981", // forest-light — consistent with the nav brand
-    outline: "#009E4D",
+    fill: "#2A5444", // forest-light — consistent with the nav brand
+    outline: "#1B3B2F",
   },
   biodiversity: {
     fill: "#1A7A6E", // teal — distinct from the green family, reads clearly at polygon opacity

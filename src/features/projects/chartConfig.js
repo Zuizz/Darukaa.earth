@@ -27,9 +27,9 @@ ChartJS.register(
 );
 
 export const CHART_THEME = {
-  forest: "#009E4D",
-  forestLight: "#10B981",
-  forestFill: "rgba(0, 158, 77, 0.15)",
+  forest: "#1B3B2F",
+  forestLight: "#2A5444",
+  forestFill: "rgba(42, 84, 68, 0.12)",
   amber: "#C99A3C",
   amberDark: "#A67C28",
   amberFill: "rgba(201, 154, 60, 0.18)",
