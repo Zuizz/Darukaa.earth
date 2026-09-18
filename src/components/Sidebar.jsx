@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { LayoutDashboard, Map, BarChart2, LogOut, User } from "lucide-react";
+import { LayoutDashboard, Map, LogOut, User } from "lucide-react";
 import { useAuth } from "../features/auth/useAuth";
 
 const navItems = [
@@ -37,19 +37,6 @@ export default function Sidebar() {
             {label}
           </NavLink>
         ))}
-
-        {/* Reports — placeholder for a future section, not a real route yet */}
-        <button
-          disabled
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-cream/30 cursor-not-allowed"
-          aria-disabled="true"
-        >
-          <BarChart2 size={16} strokeWidth={1.75} />
-          Reports
-          <span className="ml-auto text-xs text-cream/25 font-normal">
-            soon
-          </span>
-        </button>
       </nav>
 
       <div className="p-3 border-t border-forest-light space-y-2">
