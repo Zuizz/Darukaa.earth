@@ -37,8 +37,18 @@ app.include_router(metrics_router)
 @app.on_event("startup")
 def auto_seed_demo_data():
     try:
-        from app.seed_full_demo import seed_full_demo
-        seed_full_demo()
+        from app.core.database import SessionLocal
+        from app.models.project import Project
+
+        db = SessionLocal()
+        try:
+            # Fast check: skip heavy multi-query seeding if demo data is already present
+            if db.query(Project).first() is None:
+                from app.seed_full_demo import seed_full_demo
+
+                seed_full_demo()
+        finally:
+            db.close()
     except Exception as e:
         print(f"Auto-seed notification: {e}")
 

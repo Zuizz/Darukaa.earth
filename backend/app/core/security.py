@@ -4,8 +4,8 @@ import bcrypt
 from jose import jwt, JWTError
 from app.core.config import settings
 
-# Bcrypt cost factor 12 provides a solid balance (~250ms per hash) against offline brute-force attacks
-BCRYPT_ROUNDS = 12
+# Bcrypt cost factor 10 provides fast verification (~50-60ms) while maintaining security against brute-force
+BCRYPT_ROUNDS = 10
 
 
 def hash_password(password: str) -> str:
